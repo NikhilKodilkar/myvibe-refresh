@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Vibe Today</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container">
+        <div id="registrationForm">
+            <h2>Welcome to My Vibe!</h2>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="register">Register</button>
+                <button class="tab-btn" data-tab="login">Login</button>
+            </div>
+            <div id="registerTab" class="tab-content active">
+                <form id="register">
+                    <input type="text" id="handle" placeholder="Your handle" required>
+                    <input type="text" id="company" placeholder="Company name" required>
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
+            </div>
+            <div id="loginTab" class="tab-content">
+                <form id="login">
+                    <input type="text" id="loginHandle" placeholder="Enter your handle" required>
+                    <button type="submit" class="btn-secondary">Login</button>
+                </form>
+            </div>
+        </div>
+        <div id="sentimentButtons" style="display: none;">
+            <h2>How's your vibe?</h2>
+            <div class="button-container">
+                <button id="greatBtn" class="sentiment-btn great">
+                    <span class="emoji">😊</span>
+                    <span class="text">Great!</span>
+                </button>
+                <button id="mehBtn" class="sentiment-btn meh">
+                    <span class="emoji">😐</span>
+                    <span class="text">Meh</span>
+                </button>
+                <button id="ughBtn" class="sentiment-btn ugh">
+                    <span class="emoji">😫</span>
+                    <span class="text">Ugh</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html> 

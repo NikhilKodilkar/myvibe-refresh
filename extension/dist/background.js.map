@@ -1,0 +1,1 @@
+{"version":3,"file":"background.js","mappings":";;;;AAAA;AACA;AACA;AACA;AACA;AACA","sources":["webpack://my-vibe-today-extension/./src/background.js"],"sourcesContent":["// Simple background script\r\nconsole.log('Background script loaded');\r\n\r\nchrome.runtime.onInstalled.addListener(() => {\r\n    console.log('Extension installed');\r\n}); "],"names":[],"sourceRoot":""}

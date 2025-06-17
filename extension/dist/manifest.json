@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "My Vibe Today",
+  "version": "1.0.0",
+  "description": "Track company sentiment in real-time",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "http://localhost:3000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+} 
