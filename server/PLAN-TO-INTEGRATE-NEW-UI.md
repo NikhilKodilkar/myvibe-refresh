@@ -1,6 +1,6 @@
 # Plan to Integrate New UI into Server Backend
 
-This document outlines the steps required to integrate the React/TypeScript UI located in `server/new-ui-backend` with the existing Express server.
+This document outlines the steps required to integrate the React/TypeScript UI located in `server\new-ui-backend` with the existing Express server.
 
 ## 1. Review New UI
 - Built with Vite, React, Tailwind, shadcn-ui and uses Supabase for data access.
@@ -8,19 +8,19 @@ This document outlines the steps required to integrate the React/TypeScript UI l
 - `npm run build` outputs static files to `dist/`.
 
 ## 2. Install Dependencies
-Inside `server/new-ui-backend` run:
-```bash
+Inside `server\new-ui-backend` run:
+```powershell
 npm install
 ```
 This installs all packages defined in `package.json`.
 
 ## 3. Build Process
 Create a build step that compiles the UI before starting the backend:
-```bash
-cd server/new-ui-backend
+```powershell
+cd .\server\new-ui-backend
 npm run build
 ```
-The compiled files will be placed in `server/new-ui-backend/dist`.
+The compiled files will be placed in `server\new-ui-backend\dist`.
 
 ## 4. Serve Built Assets from Express
 Update the Express app (`server/src/index.js`) to serve the compiled `dist` folder:
@@ -41,11 +41,13 @@ The UI currently fetches data directly from Supabase (see `src/integrations/supa
 
 ## 7. Development Workflow
 For local development, run the Express server and Vite dev server concurrently:
-```bash
+```powershell
 # Terminal 1
-cd server && npm run dev
+cd .\server
+npm run dev
 # Terminal 2
-cd server/new-ui-backend && npm run dev
+cd .\server\new-ui-backend
+npm run dev
 ```
 When ready for production, build the UI and start the Express server only.
 
