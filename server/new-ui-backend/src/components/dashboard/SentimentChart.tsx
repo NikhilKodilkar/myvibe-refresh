@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -35,7 +34,7 @@ export const SentimentChart = ({ data, timeRange }: SentimentChartProps) => {
           {payload.map((entry: any, index: number) => (
             <p key={index} style={{ color: entry.color }} className="text-sm">
               {entry.name}: {entry.value}
-              {entry.name === 'Score' && ` (${(entry.value * 100 / 3).toFixed(1)}%)`}
+              {entry.name === 'Mean trend score' && ` (${(entry.value * 100 / 3).toFixed(1)}%)`}
             </p>
           ))}
         </div>
@@ -89,7 +88,7 @@ export const SentimentChart = ({ data, timeRange }: SentimentChartProps) => {
               stroke="#8B5CF6" 
               strokeWidth={3}
               dot={{ fill: '#8B5CF6', strokeWidth: 2, r: 5 }}
-              name="Score"
+              name="Mean trend score"
             />
           </LineChart>
         </ResponsiveContainer>

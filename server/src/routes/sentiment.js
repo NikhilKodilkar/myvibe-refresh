@@ -23,6 +23,51 @@ async function createUniqueHandle(db, baseHandle) {
     return handleId;
 }
 
+// Get all users endpoint
+router.get('/users', async (req, res) => {
+    try {
+        log.info('=== USERS ENDPOINT DEBUG ===');
+        log.info('Database object:', req.db ? 'EXISTS' : 'NULL');
+        log.info('Executing query: SELECT * FROM users ORDER BY registered_at DESC');
+        
+        const users = await req.db.all('SELECT * FROM users ORDER BY registered_at DESC');
+        
+        log.info(`Query executed successfully. Found ${users.length} users`);
+        log.info('First 3 users from database:');
+        users.slice(0, 3).forEach((user, index) => {
+            log.info(`  User ${index + 1}: handle_id="${user.handle_id}", company_name="${user.company_name}", ip="${user.ip_address}"`);
+        });
+        log.info('=== END DEBUG ===');
+        
+        res.json(users);
+    } catch (error) {
+        log.error('Failed to get users:', error);
+        log.error('Database error details:', error.message);
+        res.status(500).json({ error: 'Failed to get users' });
+    }
+});
+
+// Get sentiments endpoint with optional time filtering
+router.get('/sentiments', async (req, res) => {
+    try {
+        const { since } = req.query;
+        let query = 'SELECT * FROM sentiments ORDER BY timestamp ASC';
+        let params = [];
+        
+        if (since) {
+            query = 'SELECT * FROM sentiments WHERE timestamp >= ? ORDER BY timestamp ASC';
+            params = [since];
+        }
+        
+        const sentiments = await req.db.all(query, params);
+        log.info(`Fetched sentiments: ${sentiments.length} records`);
+        res.json(sentiments);
+    } catch (error) {
+        log.error('Failed to get sentiments:', error);
+        res.status(500).json({ error: 'Failed to get sentiments' });
+    }
+});
+
 // Registration endpoint
 router.post('/register', async (req, res) => {
     const { handle, company } = req.body;

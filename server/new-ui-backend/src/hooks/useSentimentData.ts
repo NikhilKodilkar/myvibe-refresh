@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { api } from '@/integrations/api/client';
 import { Sentiment, User, SentimentAnalytics, TimeRange } from '@/types/sentiment';
 
 export const useSentimentData = (timeRange: TimeRange) => {
@@ -43,20 +43,22 @@ export const useSentimentData = (timeRange: TimeRange) => {
         setError(null);
 
         // Fetch users
-        const { data: usersData, error: usersError } = await supabase
+        const { data: usersData, error: usersError } = await api
           .from('users')
           .select('*')
-          .order('registered_at', { ascending: false });
+          .order('registered_at', { ascending: false })
+          .execute();
 
         if (usersError) throw usersError;
 
         // Fetch sentiments for the time range
         const timeFilter = getTimeRangeFilter(timeRange);
-        const { data: sentimentsData, error: sentimentsError } = await supabase
+        const { data: sentimentsData, error: sentimentsError } = await api
           .from('sentiments')
           .select('*')
           .gte('timestamp', timeFilter)
-          .order('timestamp', { ascending: true });
+          .order('timestamp', { ascending: true })
+          .execute();
 
         if (sentimentsError) throw sentimentsError;
 

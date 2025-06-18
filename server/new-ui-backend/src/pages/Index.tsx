@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useSentimentData } from '@/hooks/useSentimentData';
 import { MetricCard } from '@/components/dashboard/MetricCard';
@@ -64,6 +63,9 @@ const Index = () => {
             <div>
               <h1 className="text-3xl font-bold text-white mb-2">
                 Vibe Check Analytics
+                <span className="ml-2 text-xs bg-green-600 text-white px-2 py-1 rounded">
+                  SQLite Version
+                </span>
               </h1>
               <p className="text-slate-400">
                 Real-time sentiment insights and organizational pulse monitoring
