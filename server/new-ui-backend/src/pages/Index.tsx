@@ -80,6 +80,7 @@ const Index = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
         {/* Executive Insights Section */}
         <div className="mb-8">
           <ExecutiveInsights 
@@ -87,6 +88,16 @@ const Index = () => {
             sentiments={sentiments} 
             timeRange={timeRange} 
           />
+        </div>
+
+        {/* Charts Row 1 - Sentiment Trends & Distribution */}
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
+          <div className="xl:col-span-2">
+            <SentimentChart data={analytics.trendData} timeRange={timeRange} />
+          </div>
+          <div>
+            <SentimentDistribution data={analytics.sentimentDistribution} />
+          </div>
         </div>
 
         {/* Key Metrics */}
@@ -121,16 +132,6 @@ const Index = () => {
             icon={<Activity className="h-5 w-5" />}
             description={`${activeUsers} of ${users.length} users`}
           />
-        </div>
-
-        {/* Charts Row 1 */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
-          <div className="xl:col-span-2">
-            <SentimentChart data={analytics.trendData} timeRange={timeRange} />
-          </div>
-          <div>
-            <SentimentDistribution data={analytics.sentimentDistribution} />
-          </div>
         </div>
 
         {/* Charts Row 2 - Time Analysis */}
